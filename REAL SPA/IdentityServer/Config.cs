@@ -35,9 +35,9 @@ namespace IdentityServer
                     AllowedGrantTypes = GrantTypes.Code,
                     RequireClientSecret = false,
 
-                    RedirectUris =           { "https://localhost:5003/callback.html" },
-                    PostLogoutRedirectUris = { "https://localhost:5003/index.html" },
-                    AllowedCorsOrigins =     { "https://localhost:5003" },
+                    RedirectUris =           { "http://localhost:5000/signin-oidc" },
+                    PostLogoutRedirectUris = { "http://localhost:5000/" },
+                    AllowedCorsOrigins =     { "http://localhost:5000" },
 
                     AllowedScopes =
                     {

@@ -13,6 +13,7 @@ import { configureInternationalization } from './i18n';
 import { Container } from './Container';
 import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
+import { AuthenticationProvider } from './core/authentication/AuthenticationProvider';
 
 configureInternationalization();
 const configurationService = Container.get<IConfigurationService>(IConfigurationServiceType);
@@ -36,7 +37,9 @@ export const Index = ({ baseUrl, configuration }: IndexProps) => {
   return (
     <IoCProvider container={Container}>
       <Suspense fallback="Loading...">
-        <AppRouter />
+        <AuthenticationProvider>
+          <AppRouter />
+        </AuthenticationProvider>
       </Suspense>
     </IoCProvider>
   );

@@ -7,12 +7,19 @@ import { AppLayout, BaseLayout } from './shared';
 import { Dashboard } from './app/dashboard';
 import { Accounts } from './app/accounts';
 import { PublicHome } from './app/public';
+import { OidcCallback } from './core/authentication/oidc/OidcCallback';
+import { OidcLogout } from './core/authentication/oidc/OidcLogout';
+import { PrivateRoute } from './core/PrivateRoute';
 
 const AppRouter = (): JSX.Element => {
   return (
     <>
       <BrowserRouter>
         <Switch>
+          <Route path={['/signin-oidc', '/signout-oidc', '/logout', '/silent-renew-oidc']}>
+            <Route exact path="/signin-oidc" component={OidcCallback} />
+            <Route exact path="/logout" component={OidcLogout} />
+          </Route>
           <Route path={['/unauthorized', '/not-found', '/dashboard', '/']}>
             <BaseLayout>
               <Route exact path="/" component={PublicHome} />
@@ -20,8 +27,7 @@ const AppRouter = (): JSX.Element => {
               <Route exact path="/not-found" component={NotFound} />
               <Route path={['/dashboard', '/transactions']}>
                 <AppLayout>
-                  <Route exact path="/dashboard" component={Dashboard} />
-                  <Route exact path="/accounts" component={Accounts} />
+                  <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 </AppLayout>
               </Route>
             </BaseLayout>

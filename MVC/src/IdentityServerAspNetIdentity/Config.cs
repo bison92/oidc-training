@@ -31,9 +31,9 @@ namespace IdentityServerAspNetIdentity
                 new Client
                 {
                     ClientId = "mvc",
-                    ClientSecrets = { new Secret("secret".Sha256()) },
 
                     AllowedGrantTypes = GrantTypes.Code,
+                    RequireClientSecret = false,
                     
                     // where to redirect to after login
                     RedirectUris = { "https://localhost:5002/signin-oidc" },
